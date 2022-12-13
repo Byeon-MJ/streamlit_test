@@ -4,4 +4,29 @@ import pandas as pd
 import matplotlib as plt
 import seaborn as sns
 
-st.write('hello')
+st.write(
+    '''
+    # 탐색적 데이터 분석 (EDA) & Seaborn을 통한 데이터 시각화
+    ## 데이터의 종류
+    * 데이터의 특성에 따라서 시각화 방식도 달라짐
+    * 정형 데이터 : 값으로 나타낼 수 있는 데이터 (숫자)
+    * 비정형 데이터 : 정형 데이터가 아닌 것 (사진, 언어...)
+    ## 정형 데이터
+    |대분류|소분류|예시|
+    |:-|:-|:-|
+    |수치형 데이터 (사칙 연산이 가능한 데이터)|연속형 데이터|키, 몸무게, 수입
+    ||이산형 데이터|과일 개수, 책의 페이지 수
+    |범주형 데이터 (범주로 나누어지는 데이터)|순서형 데이터|학점, 순위(랭킹)|
+    ||명목형 데이터|성별, 음식종류, 우편번호|
+    # 수치형 데이터 numerical data
+    > 사칙 연산이 가능한 데이터 (+, -, *, /)
+    '''
+)
+
+# DataFrame
+titanic = sns.load_dataset('titanic')
+# st.write(titanic)  # 적당히 잘라줌
+# st.table(titanic)  # 전체를 보여줌
+st.dataframe(titanic)
+
+st.dataframe(titanic.info())
