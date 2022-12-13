@@ -30,6 +30,10 @@ st.write(titanic)       # 적당히 잘라줌
 # st.dataframe(titanic) # write와 같음
 
 # seaborn를 통한 시각화
-fig = plt.figure(figsize=(10, 4))
+fig = plt.figure(figsize=(8, 4))
 sns.histplot(data=titanic, x='age')
+st.pyplot(fig)
+
+fig = plt.figure(figsize=(8, 4))
+sns.histplot(data=titanic, x='age', hue='alive')
 st.pyplot(fig)
