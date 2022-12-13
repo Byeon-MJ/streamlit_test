@@ -41,7 +41,7 @@ for idx, col in enumerate(columns2):
     for idx2 in range(4):
         # key가 겹치면 안 됨
         # col 안에 메소드를 통해서 요소들을 생성해주겠다.
-        col.text_input(f'조 추첨 대상{idx + 1 + idx2 * 4}', 
+        col.text_input(f'조 목록{idx + 1 + idx2 * 4}', 
                         key = f'g{idx + 1 + idx2 * 4}') # n -> g
                         
 
