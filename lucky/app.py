@@ -28,6 +28,21 @@ for idx, col in enumerate(columns):
         # col 안에 메소드를 통해서 요소들을 생성해주겠다.
         col.text_input(f'조 추첨 대상{idx + 1 + idx2 * 4}', 
                         key = f'n{idx + 1 + idx2 * 4}')
+
+# 2번째 : 조
+# columns -> columns2, tabs[0] -> tabs[1]
+columns2 = tabs[1].columns(4)
+# 가로 4개의 열 -> columns = [col1, col2, col3, col4]
+# col1, col2, col3, col4
+# columns -> columns2
+for idx, col in enumerate(columns2):
+    # 이중 for문
+    # col.text_input(f'조 추첨 대상{idx+1}', key = idx)
+    for idx2 in range(4):
+        # key가 겹치면 안 됨
+        # col 안에 메소드를 통해서 요소들을 생성해주겠다.
+        col.text_input(f'조 추첨 대상{idx + 1 + idx2 * 4}', 
+                        key = f'g{idx + 1 + idx2 * 4}') # n -> g
                         
 
 # 13명이 소속될 조 이름을 넣을 위치
