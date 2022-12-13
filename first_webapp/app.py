@@ -15,10 +15,5 @@ st.image(
     'https://cdn.pixabay.com/photo/2015/07/30/22/38/pixabay-868437_960_720.jpg'
 )
 
-# 5초마다 눈내리기
-import schedule
-
-def fall_snow():
+if st.button('Snow'):
     st.snow()
-
-schedule.every(5).seconds.do(fall_snow)
