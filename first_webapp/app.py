@@ -17,4 +17,4 @@ st.image(
 
 # 5초마다 눈내리기
 import schedule
-schedule.every(5).seconds.do(st.snow())
+schedule.every(5).seconds.do(st.snow)
