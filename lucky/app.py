@@ -4,6 +4,7 @@
 # streamlit 라이브러리 호출
 import streamlit as st
 import numpy as np
+import pandas as pd
 
 # st.write() 마크다운
 st.title('조 추첨 페이지')
