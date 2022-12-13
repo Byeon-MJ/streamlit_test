@@ -6,4 +6,4 @@
 ---
 > streamlit 작동에 필요한 2가지
 1. ***.py : 작동시켜 줄 메인 코드
-1. requirements.txt : pip를 해야할 라이브러리를 적어놓음, Dependency Injection
+1. requirements.txt : pip를 해야할 라이브러리를 적어놓음(의존성), Dependency Injection

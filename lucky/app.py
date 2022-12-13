@@ -12,7 +12,7 @@ st.write(
 
 if st.button('손대면 눈이 내려요'):
     st.snow()
-if st.button('손대면 풍선이 날아가요'):
+elif st.button('손대면 풍선이 날아가요'):
     st.balloons()
 
 # https://pixabay.com/ko
