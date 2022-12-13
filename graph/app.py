@@ -45,5 +45,5 @@ fig = plt.figure(figsize=(8, 4))
 plt.pie(x=x, labels=labels, autopct='%.1f%%')
 st.pyplot(fig)
 
-df = pd.read_csv('./graph/car_data.csv', encoding='cp949')
+df = pd.read_csv('Byeon-MJ/streamlit_test/graph/car_data.csv', encoding='cp949')
 st.write(df)
