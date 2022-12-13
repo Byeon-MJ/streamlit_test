@@ -12,7 +12,12 @@ st.header('여러분의 참여를 환영합니다.')
 # 추첨 대상인 13명의 이름을 넣을 수 있는 text input 만들기
 # 3 X 4 (row, col)
 # 열을 배치하는 메소드
-columns = st.columns(4)
+# x = columns(n) : n만큼의 컬럼 리스트를 생성
+
+tabs = st.tabs(['참가자', 조])
+
+# 0번째 탭에 컬럼을 넣겠다.
+columns = tabs[0].columns(4)
 # 가로 4개의 열 -> columns = [col1, col2, col3, col4]
 # col1, col2, col3, col4
 for idx, col in enumerate(columns):
