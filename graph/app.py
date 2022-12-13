@@ -45,5 +45,5 @@ fig = plt.figure(figsize=(8, 4))
 plt.pie(x=x, labels=labels, autopct='%.1f%%')
 st.pyplot(fig)
 
-df = pd.read_csv('Byeon-MJ/streamlit_test/graph/도로교통공단_사고유형별 교통사고 통계_20211231.csv')
+df = pd.read_csv('Byeon-MJ/streamlit_test/graph/도로교통공단_사고유형별 교통사고 통계_20211231.csv', encoding='utf-8')
 st.write(df)
