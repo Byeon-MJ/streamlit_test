@@ -47,7 +47,13 @@ for idx, col in enumerate(columns2):
                         
 
 # 13명이 소속될 조 이름을 넣을 위치
-st.write(st.session_state)
+# st.write(st.session_state)
+
+# np.random.choice -> 추출 -> 이름, 목록 연결
+# 1. st.session_state - n, g가 섞여있음
+ss = pd.Series(tabs[0].session_state)
+
+# 2. df 형태로 정리
 
 
 # <추첨 버튼>
