@@ -25,8 +25,6 @@ st.write(
 
 # DataFrame
 titanic = sns.load_dataset('titanic')
-# st.write(titanic)  # 적당히 잘라줌
+st.write(titanic)  # 적당히 잘라줌
 # st.table(titanic)  # 전체를 보여줌
 st.dataframe(titanic)
-
-st.dataframe(titanic.info())
