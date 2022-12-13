@@ -10,10 +10,11 @@ st.write(
     '''
 )
 
+if st.button('손대면 눈이 내려요'):
+    st.snow()
+
 # https://pixabay.com/ko
 st.image(
     'https://cdn.pixabay.com/photo/2015/07/30/22/38/pixabay-868437_960_720.jpg'
 )
 
-if st.button('Snow'):
-    st.snow()
