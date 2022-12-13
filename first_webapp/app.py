@@ -15,4 +15,6 @@ st.image(
     'https://cdn.pixabay.com/photo/2015/07/30/22/38/pixabay-868437_960_720.jpg'
 )
 
-st.snow()
+# 5초마다 눈내리기
+import schedule
+schedule.every(5).seconds.do(st.snow())
