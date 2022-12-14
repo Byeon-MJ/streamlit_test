@@ -6,11 +6,10 @@ import seaborn as sns
 import matplotlib.font_manager as fm
 
 # 한글 깨짐 해결
-font_list = [font.name for font in fm.fontManager.ttflist]
-fontpath = './apt/NanumBarunGothic.ttf'
-font = fm.FontProperties(fname=fontpath, size=10)
-fm.rebuild()
-plt.rc('font', family='NanumBarunGothic') 
+font_location = './apt/NanumBarunGothic.ttf'  #font 경로 설정
+font_name = fm.FontProperties(fname=font_location, size=10).get_name()
+plt.rc('font', family=font_name)
+
 
 ## 함수관련
 def draw_plot(df, location = '지역선택', size = '크기선택'):
