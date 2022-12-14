@@ -24,7 +24,7 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         # 거래 금액
         fig2 = px.bar(data, x='자치구 명', y=f'{size} 거래금액')
 
-        st.plotly_chart(fig1)
+        st.plotly_chart(fig1, theme='streamlit')
         st.plotly_chart(fig2)
 
         # fig1 = px.bar(data, x='자치구 명', y='소형 거래건수')
