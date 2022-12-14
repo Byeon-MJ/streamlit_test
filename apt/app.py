@@ -123,8 +123,7 @@ with st.expander("결론"):                                #결론 출력(최곳
 import pydeck as pdk
 
 geo = pd.read_csv('./apt/seoul_geo.csv', encoding='cp949')
-geo_df = geo[['구명', '경도', '위도']].set_index('구명')
-geo_df.rename(columns = {'경도' : 'lon', '위도':'lat'}, inplace = True)
+geo_df = geo[['구명', '경도', '위도']].rename(columns = {'구명' : '자치구 명','경도' : 'lon', '위도':'lat'}).set_index('자치구 명')
 
 st.pydeck_chart(pdk.Deck(
     map_style=None,
@@ -137,20 +136,13 @@ st.pydeck_chart(pdk.Deck(
     layers=[
         pdk.Layer(
            'HexagonLayer',
-           data=chart_data,
+           data=df[f'{size} 거래건수'],
            get_position='[lon, lat]',
            radius=200,
            elevation_scale=4,
            elevation_range=[0, 1000],
            pickable=True,
            extruded=True,
-        ),
-        pdk.Layer(
-            'ScatterplotLayer',
-            data=chart_data,
-            get_position='[lon, lat]',
-            get_color='[200, 30, 0, 160]',
-            get_radius=200,
         ),
     ],
 ))
