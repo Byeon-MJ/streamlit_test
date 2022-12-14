@@ -155,7 +155,7 @@ df_merge = pd.merge(left=df.reset_index(), right=geo_df.reset_index(), how='inne
 def plot(df):
     # 리스트를 이용해 여러 행의 데이터를 위,경도로 묶음
     center = [37.58, 127.0]
-    m = folium.Map(location=center, tiles='openstreetmap', zoom_start=12)
+    m = folium.Map(location=center, tiles='openstreetmap', zoom_start=11)
 
     locations = df[['lat', 'lon']].values[:len(df)].tolist()
 
