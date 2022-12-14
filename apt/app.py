@@ -3,6 +3,14 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import matplotlib.font_manager as fm
+
+# 한글 깨짐 해결
+font_list = [font.name for font in fm.fontManager.ttflist]
+fontpath = './apt/NanumBarunGothic.ttf'
+font = fm.FontProperties(fname=fontpath, size=10)
+fm._rebuild()
+plt.rc('font', family='NanumBarunGothic') 
 
 ## 함수관련
 def draw_plot(df, location = '지역선택', size = '크기선택'):
@@ -111,9 +119,6 @@ with st.expander("결론"):                                #결론 출력(최곳
 #     elif (location != '지역선택') & (size == '크기선택'):
 #         a = (f"{year}년도  그래프: 지역과 크기를 선택해 주세요.")
 
-import matplotlib.font_manager as fm
-font_list = [font.name for font in fm.fontManager.ttflist]
-st.write(font_list)
 
 
 
