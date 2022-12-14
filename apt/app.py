@@ -21,6 +21,7 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
 
         # 거래 금액
         fig2 = px.bar(data, x='자치구 명', y=f'{size} 거래금액')
+
         st.plotly_chart(fig1)
         st.plotly_chart(fig2)
 
@@ -31,13 +32,14 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
 
     elif size == '크기선택':
         # 구 선택, 크기별 확인
-        data = pd.DataFrame(df.set_index('자치구 명').T.iloc[1:6,:][location]).reset_index()
+        data = pd.DataFrame(df.set_index('자치구 명').T.iloc[1:6,:][location])
         
         # 거래 건수
-        fig1 = px.bar(data, x=location, y='index')
+        fig1 = px.bar(data, x=location)
         
         # 거래 금액
-        fig2 = px.bar(data, x=location, y='index')
+        fig2 = px.bar(data, x=location)
+
         st.plotly_chart(fig1)
         st.plotly_chart(fig2)
 
