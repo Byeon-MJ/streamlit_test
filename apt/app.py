@@ -111,6 +111,7 @@ with st.expander("결론"):                                #결론 출력(최곳
 #     elif (location != '지역선택') & (size == '크기선택'):
 #         a = (f"{year}년도  그래프: 지역과 크기를 선택해 주세요.")
 
+import matplotlib.font_manager as fm
 font_list = [font.name for font in fm.fontManager.ttflist]
 st.write(font_list)
 
