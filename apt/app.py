@@ -136,7 +136,7 @@ st.pydeck_chart(pdk.Deck(
     layers=[
         pdk.Layer(
            'HexagonLayer',
-           data=df[f'{size} 거래건수'],
+           data=df.set_index('자치구 명')['소형 거래건수'],
            get_position='[lon, lat]',
            radius=200,
            elevation_scale=4,
