@@ -144,7 +144,7 @@ with st.expander("결론"):                                #결론 출력(최곳
 
 from streamlit_folium import st_folium
 import folium
-from folium.plugins import MarkerCluster
+from folium.plugins import MarkerCluster, Circle
 
 geo = pd.read_csv('./apt/seoul_geo.csv', encoding='cp949')
 geo_df = geo[['구명', '경도', '위도']].rename(columns = {'구명' : '자치구 명','경도' : 'lon', '위도':'lat'}).set_index('자치구 명')
@@ -172,11 +172,8 @@ def plot(df):
 
         folium.Circle(location=locations[i], radius=tr_count, color = df_color, fill=True, fill_opacity=0.7).add_to(m)
 
-    # 클러스터를 생성
-    cluster = MarkerCluster(locations)
-
     # 지도에 클러스터를 추가.
-    cluster(locations).add_to(m)
+    # MarkerCluster(locations).add_to(m)
 
     return m
 
