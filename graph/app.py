@@ -14,25 +14,32 @@ st.write(
     ## 정형 데이터
     |대분류|소분류|예시|
     |:-|:-|:-|
-    |수치형 데이터 (사칙 연산이 가능한 데이터)|연속형 데이터|키, 몸무게, 수입
+    |수치형 데이터(사칙 연산이 가능한 데이터)|연속형 데이터|키, 몸무게, 수입
     ||이산형 데이터|과일 개수, 책의 페이지 수
-    |범주형 데이터 (범주로 나누어지는 데이터)|순서형 데이터|학점, 순위(랭킹)|
+    |범주형 데이터(범주로 나누어지는 데이터)|순서형 데이터|학점, 순위(랭킹)|
     ||명목형 데이터|성별, 음식종류, 우편번호|
     # 수치형 데이터 numerical data
     > 사칙 연산이 가능한 데이터 (+, -, *, /)
     '''
 )
 
-# DataFrame
+# df
 titanic = sns.load_dataset('titanic')
-st.write(titanic)       # 적당히 잘라줌
-# st.table(titanic)     # 전체를 보여줌
-# st.dataframe(titanic) # write와 같음
+st.write(titanic) # 적당히 짤라줌
+# st.table(titanic) # 전체를 보여줌
 
 # seaborn를 통한 시각화
 fig = plt.figure(figsize=(8, 4))
-sns.histplot(data=titanic, x='age')
-st.pyplot(fig)
+titanic['나이'] = titanic.age
+
+import plotly.express as px
+
+# 한글 사용 -> plotly
+# requirements : plotly
+# https://docs.streamlit.io/library/api-reference/charts/st.plotly_chart
+# https://www.datacamp.com/cheat-sheet/plotly-express-cheat-sheet
+fig = px.histogram(titanic, x="나이")
+st.plotly_chart(fig)
 
 fig = plt.figure(figsize=(8, 4))
 sns.histplot(data=titanic, x='age', hue='alive', multiple='stack')
@@ -44,6 +51,3 @@ labels = ['A', 'B', 'C']
 fig = plt.figure(figsize=(8, 4))
 plt.pie(x=x, labels=labels, autopct='%.1f%%')
 st.pyplot(fig)
-
-df = pd.read_csv('./graph/car_data.csv', encoding='cp949')
-st.write(df)
