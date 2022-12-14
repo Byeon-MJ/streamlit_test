@@ -2,59 +2,112 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
-temp1 = ""
-temp2 = ""
+import seaborn as sns
+## 함수관련
+def draw_plot(df, location = '지역선택', size = '크기선택'):
+    if (location == '지역선택') & (size == '크기선택'):
+        print('선택하시오')
+    elif location == '지역선택':
+        # 크기 선택, 구별 확인
+        data = df[['자치구 명',f'{size} 거래건수', f'{size} 거래금액']]
+        fig = plt.figure(figsize=(20, 10))
+        # 거래 건수
+        plt.subplot(2, 1, 1)
+        # plt.title(f'{size} 자치구 별 거래 건수')
+        sns.barplot(x='자치구 명', y=f'{size} 거래건수', data=data)
+        # 거래 금액
+        plt.subplot(2, 1, 2)
+        # plt.title(f'{size} 자치구 별 거래금액(평균)')
+        sns.barplot(x='자치구 명', y=f'{size} 거래금액', data=data)
+        fig.tight_layout()
+        st.pyplot(fig)
+    elif size == '크기선택':
+        # 구 선택, 크기별 확인
+        data = pd.DataFrame(df.set_index('자치구 명').T.iloc[1:6,:][location]).reset_index()
+        fig = plt.figure(figsize=(20, 10))
+        # 거래 건수
+        plt.subplot(2, 1, 1)
+        sns.barplot(x=location, y='index', data=data)
+        plt.ylabel('거래 건수')
+        # 거래 금액
+        plt.subplot(2, 1, 2)
+        sns.barplot(x=location, y='index', data=data)
+        plt.ylabel('거래 금액')
+        st.pyplot(fig)
+    else:
+        # 지역, 크기 둘 다 선택
+        data = df[['자치구 명',f'{size} 거래건수', f'{size} 거래금액']]
+        data_loc = data[data['자치구 명'] == location]
+        fig = plt.figure(figsize=(10, 10))
+        # 거래 건수
+        plt.subplot(2, 1, 1)
+        # plt.title(f'{size} 자치구 별 거래 건수')
+        sns.barplot(x='자치구 명', y=f'{size} 거래건수', data=data_loc)
+        # 거래 금액
+        plt.subplot(2, 1, 2)
+        # plt.title(f'{size} 자치구 별 거래금액(평균)')
+        sns.barplot(x='자치구 명', y=f'{size} 거래금액', data=data_loc)
+        fig.tight_layout()
+        st.pyplot(fig)
+# 선택 옵션 데이터
 AI26year = [2018,2019,2020]
 AI26location = ['강동구', '송파구', '강남구', '서초구', '관악구', '동작구', '영등포구', '금천구', '구로구',
                 '강서구', '양천구', '마포구', '서대문구', '은평구', '노원구', '도봉구', '강북구', '성북구',
                 '중랑구', '동대문구', '광진구', '성동구', '용산구', '중구', '종로구']
-# Using "with" notation
-with st.sidebar:
+#사이드바에서 원하는 데이터 옵션 선택하기
+with st.sidebar:                    #사이드바 라디오 년도 선택
     year = st.radio(
         "원하시는 년도를 선택해 주세요",
         (AI26year[0], AI26year[1], AI26year[2])
     )
-
-if st.sidebar.button('지역 선택'):
-    location = st.sidebar.selectbox(
-    "지역 선택",
+location = st.sidebar.selectbox(             #사이드바 선택박스 지역 선택
+        "지역 선택",
         (
-            '강동구', '송파구', '강남구', '서초구', '관악구', '동작구', '영등포구', '금천구', '구로구',
+            '지역선택', '강동구', '송파구', '강남구', '서초구', '관악구', '동작구', '영등포구', '금천구', '구로구',
             '강서구', '양천구', '마포구', '서대문구', '은평구', '노원구', '도봉구', '강북구', '성북구',
             '중랑구', '동대문구', '광진구', '성동구', '용산구', '중구', '종로구'
         )
     )
-    temp1 = location
-st.write(temp1)
-if st.sidebar.button('크기 선택'):
-    size = st.sidebar.selectbox(
+st.write(location)
+size = st.sidebar.selectbox(                     #사이드바 선택박스 크기 선택
     "크기 선택",
         (
-            '소형', '중소형', '중형', '중대형', '대형'
+            '크기선택', '소형', '중소형', '중형', '중대형', '대형'
         )
     )
-    temp2 = size
-st.write(temp2)
-tab1, tab2 = st.tabs([":상승세인_차트: Chart", ":카드_파일_상자: Data"])
-data = np.random.randn(10, 1)
-tab1.subheader("A tab with a chart")
-tab1.line_chart(data)
-tab2.subheader("A tab with the data")
-tab2.write(data)
-with st.expander("결론"):
-    st.write("""
-        The chart above shows some numbers I picked for you.
-        I rolled actual dice for these, so they're *guaranteed* to
-        be random.
+st.write(size)
+#데이터 불러오기, 가공
+df = pd.read_csv(f'./opendata/data/df_{year}.csv') #선택한 년도 데이터 불러오기
+# draw_plot(df, location, size)
+# 탭에서 데이터 그리기
+tab1, tab2 = st.tabs([":상승세인_차트: Chart", ":카드_파일_상자: Data"])          #탭으로 그래프로 볼지 데이터 프레임으로 볼지 선택
+if location == "지역선택":
+    tab1.subheader(f"{year}년도 그래프")
+else:
+    tab1.subheader(f"{year}년도 {location}지역 매매 현황 그래프")                    #탭 1 헤더
+draw_plot(df, location, size)                                #탭 1 그래프 출력
+if location == "지역선택":                                    #탭 2 헤더
+    tab1.subheader(f"{year}년도 그래프")
+else:
+    tab1.subheader(f"{year}년도 {location}지역 매매 현황 그래프")
+tab2.write(df)                                        #탭 2 데이터 출력
+with st.expander("결론"):                                #결론 출력(최곳값, 최솟값 등등)
+    st.write(f"""
+                - 최고 매매가: max값
+                - 최소 매매가: min값
+        - 최고 많이 팔린 크기:  max값
+        - 제일 적게 팔린 크기:  min값
     """)
-    st.image("https://static.streamlit.io/examples/dice.jpg")
-def showdata():
-    location = st.sidebar.selectbox(
-    "지역 선택",
-        (
-            '강동구', '송파구', '강남구', '서초구', '관악구', '동작구', '영등포구', '금천구', '구로구',
-            '강서구', '양천구', '마포구', '서대문구', '은평구', '노원구', '도봉구', '강북구', '성북구',
-            '중랑구', '동대문구', '광진구', '성동구', '용산구', '중구', '종로구'
-        )
-    )
+    st.image("./opendata/img/exit.png")
+# def tab_header(location, size):
+#     if (location == '지역선택') & (size == '크기선택'):
+#         a = (f"{year}년도  그래프: 지역과 크기를 선택해 주세요.")
+#     elif (location != '지역선택') & (size == '크기선택'):
+#         a = (f"{year}년도  그래프: 지역과 크기를 선택해 주세요.")
+
+
+
+
+
+
+
