@@ -38,12 +38,12 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         data = data.reset_index().rename(columns = {'index':'크기'})
         
         # 거래 건수
-        fig1 = px.bar(data, x=location)
+        fig1 = px.bar(data, x=location, y='크기')
         fig1.update_traces(marker={"color": "magenta",
                                   "opacity": 0.5})
         
         # 거래 금액
-        fig2 = px.bar(data, x=location)
+        fig2 = px.bar(data, x=location, y='크기')
 
         st.plotly_chart(fig1, theme='streamlit')
         st.plotly_chart(fig2, theme='streamlit')
