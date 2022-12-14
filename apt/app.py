@@ -147,6 +147,7 @@ with st.expander("결론"):                                #결론 출력(최곳
 
 
 # 지도 시각화
+import folium
 from folium.plugins import HeatMap
 
 geo = pd.read_csv('./apt/seoul_geo.csv', encoding='cp949')
