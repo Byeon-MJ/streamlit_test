@@ -6,4 +6,4 @@ seaborn
 plotly
 pydeck
 folium
-streamlit-folium
+streamlit_folium
