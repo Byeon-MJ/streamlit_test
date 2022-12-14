@@ -24,7 +24,6 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         st.plotly_chart(fig1)
         st.plotly_chart(fig2)
 
-        # data = df[['자치구 명','소형 거래건수', '소형 거래금액']]
         # fig1 = px.bar(data, x='자치구 명', y='소형 거래건수')
         # fig2 = px.bar(data, x='자치구 명', y='소형 거래금액')
         # st.plotly_chart(fig1)
@@ -33,16 +32,14 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
     elif size == '크기선택':
         # 구 선택, 크기별 확인
         data = pd.DataFrame(df.set_index('자치구 명').T.iloc[1:6,:][location]).reset_index()
-        fig = plt.figure(figsize=(20, 10))
+        
         # 거래 건수
-        plt.subplot(2, 1, 1)
-        sns.barplot(x=location, y='index', data=data)
-        plt.ylabel('거래 건수')
+        fig1 = px.bar(data, x=location, y='index')
+        
         # 거래 금액
-        plt.subplot(2, 1, 2)
-        sns.barplot(x=location, y='index', data=data)
-        plt.ylabel('거래 금액')
-        st.pyplot(fig)
+        fig2 = px.bar(data, x=location, y='index')
+        st.plotly_chart(fig1)
+        st.plotly_chart(fig2)
 
     else:
         # 지역, 크기 둘 다 선택
