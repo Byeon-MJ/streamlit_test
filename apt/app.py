@@ -170,7 +170,7 @@ def plot(df):
         else:
             df_color = 'black'
 
-        folium.Circle(location=locations[i], radius=tr_count*100, color = df_color, fill=True, fill_opacity=0.5).add_to(m)
+        folium.Circle(location=locations[i], radius=tr_count*10, color = df_color, fill=True, fill_opacity=0.5).add_to(m)
 
     # 지도에 클러스터를 추가.
     # MarkerCluster(locations).add_to(m)
