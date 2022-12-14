@@ -10,28 +10,25 @@ import plotly.express as px
 ## 함수관련
 def draw_plot(df, location = '지역선택', size = '크기선택'):
     if (location == '지역선택') & (size == '크기선택'):
-        # st.image("./apt/sample.jpg")
-        data = df[['자치구 명','소형 거래건수', '소형 거래금액']]
-        fig = px.bar(data, x='자치구 명', y='소형 거래건수')
-        fig2 = px.bar(data, x='자치구 명', y='소형 거래금액')
-        st.plotly_chart(fig)
-        st.plotly_chart(fig2)
-
+        st.image("./apt/sample.jpg")
 
     elif location == '지역선택':
         # 크기 선택, 구별 확인
         data = df[['자치구 명',f'{size} 거래건수', f'{size} 거래금액']]
-        fig = plt.figure(figsize=(20, 10))
-        # 거래 건수
-        plt.subplot(2, 1, 1)
-        # plt.title(f'{size} 자치구 별 거래 건수')
-        sns.barplot(x='자치구 명', y=f'{size} 거래건수', data=data)
+
+        # 거래 건수     
+        fig1 = px.bar(data, x='자치구 명', y=f'{size} 거래건수')
+
         # 거래 금액
-        plt.subplot(2, 1, 2)
-        # plt.title(f'{size} 자치구 별 거래금액(평균)')
-        sns.barplot(x='자치구 명', y=f'{size} 거래금액', data=data)
-        fig.tight_layout()
-        st.pyplot(fig)
+        fig2 = px.bar(data, x='자치구 명', y=f'{size} 거래금액')
+        st.plotly_chart(fig1)
+        st.plotly_chart(fig2)
+
+        # data = df[['자치구 명','소형 거래건수', '소형 거래금액']]
+        # fig1 = px.bar(data, x='자치구 명', y='소형 거래건수')
+        # fig2 = px.bar(data, x='자치구 명', y='소형 거래금액')
+        # st.plotly_chart(fig1)
+        # # st.plotly_chart(fig2)
 
     elif size == '크기선택':
         # 구 선택, 크기별 확인
