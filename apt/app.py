@@ -145,8 +145,8 @@ geo_df = geo[['구명', '경도', '위도']].rename(columns = {'구명' : '자�
 st.pydeck_chart(pdk.Deck(
     map_style=None,
     initial_view_state=pdk.ViewState(
-        latitude=37.496507,
-        longitude=126.944308,
+        latitude=37.557945,
+        longitude=126.994195,
         zoom=11,
         pitch=50,
     ),
@@ -155,8 +155,8 @@ st.pydeck_chart(pdk.Deck(
            'HexagonLayer',
            data=geo_df,
            get_position='[lon, lat]',
-           radius=200,
-           elevation_scale=4,
+           radius=300,
+           elevation_scale=20,
            elevation_range=[0, 1000],
            pickable=True,
            extruded=True,
