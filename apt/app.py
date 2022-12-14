@@ -10,7 +10,10 @@ import plotly.express as px
 ## 함수관련
 def draw_plot(df, location = '지역선택', size = '크기선택'):
     if (location == '지역선택') & (size == '크기선택'):
-        st.image("./apt/sample.jpg")
+        # st.image("./apt/sample.jpg")
+        data = df[['자치구 명',f'{size} 거래건수', f'{size} 거래금액']]
+        fig = px.bar(x='자치구 명', y='소형 거래건수', data=data)
+        st.plotly_chart(fig)
     elif location == '지역선택':
         # 크기 선택, 구별 확인
         data = df[['자치구 명',f'{size} 거래건수', f'{size} 거래금액']]
@@ -25,6 +28,7 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         sns.barplot(x='자치구 명', y=f'{size} 거래금액', data=data)
         fig.tight_layout()
         st.pyplot(fig)
+
     elif size == '크기선택':
         # 구 선택, 크기별 확인
         data = pd.DataFrame(df.set_index('자치구 명').T.iloc[1:6,:][location]).reset_index()
@@ -38,6 +42,7 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         sns.barplot(x=location, y='index', data=data)
         plt.ylabel('거래 금액')
         st.pyplot(fig)
+
     else:
         # 지역, 크기 둘 다 선택
         data = df[['자치구 명',f'{size} 거래건수', f'{size} 거래금액']]
