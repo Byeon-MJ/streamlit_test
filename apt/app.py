@@ -157,11 +157,11 @@ def plot(df):
     center = [37.58, 127.0]
     m = folium.Map(location=center, tiles='openstreetmap', zoom_start=12)
 
-    locations = df_merge[['lat', 'lon']].values[:len(df_merge)].tolist()
+    locations = df[['lat', 'lon']].values[:len(df)].tolist()
 
-    for i in range(len(df_merge)):
-        df_id = df_merge['자치구 명'][i]
-        tr_count = df_merge['소형 거래건수'][i]
+    for i in range(len(df)):
+        df_id = df['자치구 명'][i]
+        tr_count = df['소형 거래건수'][i]
 
         if tr_count < 100 :
             df_color = 'blue'
