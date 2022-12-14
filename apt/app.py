@@ -69,15 +69,15 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         data1 = data1.reset_index().rename(columns = {'index':'크기'})
 
         data2 = pd.DataFrame(df.set_index('자치구 명').T.iloc[6:,:][location])        
-        data2 = data1.reset_index().rename(columns = {'index':'크기'})
-                
+        data2 = data2.reset_index().rename(columns = {'index':'거래금액'})
+
         # 거래 건수
         fig1 = px.bar(data1, x=location, y='크기')
         fig1.update_traces(marker={"color": "magenta",
                                   "opacity": 0.5})
         
         # 거래 금액
-        fig2 = px.bar(data2, x=location, y='크기')
+        fig2 = px.bar(data2, x=location, y='금액')
 
         st.plotly_chart(fig1, theme='streamlit')
         st.plotly_chart(fig2, theme='streamlit')
