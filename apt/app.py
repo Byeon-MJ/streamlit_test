@@ -4,17 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib.font_manager as fm
+import plotly.express as px
 
-!apt-get update -qq
-!apt-get install fonts-nanum* -qq
-
-font_list = [for fontInfo in fm.fontManager.ttflist]
-st.write(font_list)
-
-# 한글 깨짐 해결
-font_location = './apt/NanumBarunGothic.ttf'  #font 경로 설정
-font_name = fm.FontProperties(fname=font_location, size=10).get_name()
-plt.rc('font', family=font_name)
 
 
 ## 함수관련
