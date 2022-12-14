@@ -77,7 +77,7 @@ size = st.sidebar.selectbox(                     #사이드바 선택박스 크�
     )
 st.write(size)
 #데이터 불러오기, 가공
-df = pd.read_csv(f'./opendata/data/df_{year}.csv') #선택한 년도 데이터 불러오기
+df = pd.read_csv(f'./apt/df_{year}.csv') #선택한 년도 데이터 불러오기
 # draw_plot(df, location, size)
 # 탭에서 데이터 그리기
 tab1, tab2 = st.tabs([":상승세인_차트: Chart", ":카드_파일_상자: Data"])          #탭으로 그래프로 볼지 데이터 프레임으로 볼지 선택
@@ -98,7 +98,7 @@ with st.expander("결론"):                                #결론 출력(최곳
         - 최고 많이 팔린 크기:  max값
         - 제일 적게 팔린 크기:  min값
     """)
-    st.image("./opendata/img/exit.png")
+    # st.image("./opendata/img/exit.png")
 # def tab_header(location, size):
 #     if (location == '지역선택') & (size == '크기선택'):
 #         a = (f"{year}년도  그래프: 지역과 크기를 선택해 주세요.")
