@@ -9,7 +9,7 @@ import matplotlib.font_manager as fm
 font_list = [font.name for font in fm.fontManager.ttflist]
 fontpath = './apt/NanumBarunGothic.ttf'
 font = fm.FontProperties(fname=fontpath, size=10)
-fm._rebuild()
+fm.rebuild()
 plt.rc('font', family='NanumBarunGothic') 
 
 ## 함수관련
