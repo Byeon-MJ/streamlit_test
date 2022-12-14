@@ -78,7 +78,7 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         st.plotly_chart(fig2, theme='streamlit')
 
         st_data = st_folium(plot(df_merge), width=700)
-        st_data
+        st.write(st_data)
 
     else:
         # 지역, 크기 둘 다 선택
