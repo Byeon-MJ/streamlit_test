@@ -11,7 +11,7 @@ import plotly.express as px
 def draw_plot(df, location = '지역선택', size = '크기선택'):
     if (location == '지역선택') & (size == '크기선택'):
         # st.image("./apt/sample.jpg")
-        data = df[['자치구 명','소형' 거래건수', '소형 거래금액']]
+        data = df[['자치구 명','소형 거래건수', '소형 거래금액']]
         fig = px.bar(x='자치구 명', y='소형 거래건수', data=data)
         st.plotly_chart(fig)
 
