@@ -20,7 +20,7 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         fig1 = px.bar(data, x='자치구 명', y=f'{size} 거래건수')
         fig1.update_traces(marker={"color": "magenta",
                                     "opacity": 0.5,
-                                    "line": {"width": 2, "color": "cyan"}})
+                                    "line": {"width": 2}})
 
         # 거래 금액
         fig2 = px.bar(data, x='자치구 명', y=f'{size} 거래금액')
@@ -39,6 +39,9 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         
         # 거래 건수
         fig1 = px.bar(data, x=location)
+        fig1.update_traces(marker={"color": "magenta",
+                                  "opacity": 0.5,
+                                   "line": {"width": 2}})
         
         # 거래 금액
         fig2 = px.bar(data, x=location)
@@ -53,6 +56,9 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         
         # 거래 건수
         fig1 = px.bar(data_loc, x='자치구 명', y=f'{size} 거래건수')
+        fig1.update_traces(marker={"color": "magenta",
+                                   "opacity": 0.5,
+                                   "line": {"width": 2}})
 
         # 거래 금액
         fig2 = px.bar(data_loc, x='자치구 명', y=f'{size} 거래금액')
