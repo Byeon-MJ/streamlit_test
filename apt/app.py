@@ -35,6 +35,7 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
     elif size == '크기선택':
         # 구 선택, 크기별 확인
         data = pd.DataFrame(df.set_index('자치구 명').T.iloc[1:6,:][location])
+        data = data.reset_index().rename(columns = {'index':'크기'})
         
         # 거래 건수
         fig1 = px.bar(data, x=location)
