@@ -142,18 +142,3 @@ with st.expander("결론"):                                #결론 출력(최곳
                     - 최고 불호하는 사이즈:
                 """)        
 
-
-
-
-
-# 지도 시각화
-import folium
-from folium.plugins import HeatMap
-
-geo = pd.read_csv('./apt/seoul_geo.csv', encoding='cp949')
-geo_df = geo[['구명', '경도', '위도']].rename(columns = {'구명' : '자치구 명','경도' : 'lon', '위도':'lat'}).set_index('자치구 명')
-
-# Draw a basemap
-m = folium.Map(location=[37.557945, 126.994195], tiles='openstreetmap', zoom_start=11)
-
-st.write(m)
