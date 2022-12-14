@@ -147,31 +147,12 @@ with st.expander("결론"):                                #결론 출력(최곳
 
 
 # 지도 시각화
-import pydeck as pdk
+from folium.plugins import HeatMap
 
 geo = pd.read_csv('./apt/seoul_geo.csv', encoding='cp949')
 geo_df = geo[['구명', '경도', '위도']].rename(columns = {'구명' : '자치구 명','경도' : 'lon', '위도':'lat'}).set_index('자치구 명')
 
-st.pydeck_chart(pdk.Deck(
-    map_style=None,
-    initial_view_state=pdk.ViewState(
-        latitude=37.557945,
-        longitude=126.994195,
-        zoom=11,
-        pitch=50,
-    ),
-    layers=[
-        pdk.Layer(
-           'HexagonLayer',
-           data=geo_df,
-           get_position='[lon, lat]',
-           radius=300,
-           auto_highlight=True,
-           elevation_scale=50,
-           elevation_range=[0, 1000],
-           pickable=True,
-           extruded=True,
-        ),
-    ],
-))
+# Draw a basemap
+m = folium.Map(location=[37.557945, 126.994195], tiles='openstreetmap', zoom_start=11)
 
+st.map(m)
