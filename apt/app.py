@@ -156,4 +156,4 @@ geo_df = geo[['구명', '경도', '위도']].rename(columns = {'구명' : '자�
 # Draw a basemap
 m = folium.Map(location=[37.557945, 126.994195], tiles='openstreetmap', zoom_start=11)
 
-st.map(m)
+st.write(m)
