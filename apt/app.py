@@ -61,6 +61,9 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         # st.plotly_chart(fig1)
         # # st.plotly_chart(fig2)
 
+        st_data = st_folium(plot(df_merge), width=700)
+        st_data
+
     elif size == '크기선택':
         # 구 선택, 크기별 확인
         data = pd.DataFrame(df.set_index('자치구 명').T.iloc[1:6,:][location])
@@ -76,8 +79,6 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
 
         st.plotly_chart(fig1, theme='streamlit')
         st.plotly_chart(fig2, theme='streamlit')
-
-        st_data = st_folium(plot(df_merge), width=700)
 
     else:
         # 지역, 크기 둘 다 선택
@@ -179,4 +180,3 @@ with st.expander("결론"):                                #결론 출력(최곳
                 """)        
 
 
-st_data
