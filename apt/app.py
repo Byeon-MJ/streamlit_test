@@ -62,7 +62,7 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         # # st.plotly_chart(fig2)
 
         st_data = st_folium(plot(df_merge), width=700)
-        st_data
+        # st_data
 
     elif size == '크기선택':
         # 구 선택, 크기별 확인
