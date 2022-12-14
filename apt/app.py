@@ -78,7 +78,6 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         st.plotly_chart(fig2, theme='streamlit')
 
         st_data = st_folium(plot(df_merge), width=700)
-        st.write(st_data)
 
     else:
         # 지역, 크기 둘 다 선택
@@ -179,3 +178,5 @@ with st.expander("결론"):                                #결론 출력(최곳
                     - 최고 불호하는 사이즈:
                 """)        
 
+
+st_data
