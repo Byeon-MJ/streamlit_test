@@ -47,17 +47,14 @@ def draw_plot(df, location = '지역선택', size = '크기선택'):
         # 지역, 크기 둘 다 선택
         data = df[['자치구 명',f'{size} 거래건수', f'{size} 거래금액']]
         data_loc = data[data['자치구 명'] == location]
-        fig = plt.figure(figsize=(10, 10))
+        
         # 거래 건수
-        plt.subplot(2, 1, 1)
-        # plt.title(f'{size} 자치구 별 거래 건수')
-        sns.barplot(x='자치구 명', y=f'{size} 거래건수', data=data_loc)
+        fig1 = px.bar(data_loc, x='자치구 명', y=f'{size} 거래건수')
+
         # 거래 금액
-        plt.subplot(2, 1, 2)
-        # plt.title(f'{size} 자치구 별 거래금액(평균)')
-        sns.barplot(x='자치구 명', y=f'{size} 거래금액', data=data_loc)
-        fig.tight_layout()
-        st.pyplot(fig)
+        fig2 = px.bar(data_loc, x='자치구 명', y=f'{size} 거래금액')
+        st.plotly_chart(fig1)
+        st.plotly_chart(fig2)
 
 
 
